@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    Canvas:
+        1.定义:  html5新增的一个功能性画布标签
+        2.特点:
+            1)矢量图; 2)支持"2d"场景,不支持3d;
+            3)发挥其强大功能的话必须要结合JS的能力(因为CANCAS向JS提供了强大的API接口)
+        3.作用:
+            a)画画;
+            b)有画画衍生出来:做游戏,做动态表格,图标.....
+        4.使用:
+            a)路线的描绘
+                1.beginPath() 开始路径:(画布上作画,图形看做线条构成)
+                    一般情况下,在开图形绘制的时候都需要加上开始和闭合路径
+                2 moveTo(a1,b1)设置起点位置(a1,b1)
+                    a) canvas画布的坐标系,默认情况是画布的左上角的顶点
+                3.lineTo(a,b) 把路线描绘到哪个位置 位置有参数(a,b)
+                4.closePath()闭合路径 : 告诉JS作画完成
+            b)样式设置:
+                1.样式填充;
+                    a) .fillStyle = "red"
+                    b) .fill()方法
+                2.描边:
+                    a) strokeStyle 设置描边的样式
+                    b) stroke() 描边
+            c) 关于一些图形绘制;
+                1 矩形;
+                    a) Rect()方法; rect(x1,y1 [x1和y1确定矩形从哪里开始绘制])
+                      rect方法是绘制一个没有填充的矩形
+                    b) fillRect(x1,y1 [x1,y1.......]) 该方法会自动填充
+                        注意:默认使用黑色填充,要改变填充颜色要使用fillStyle设置填充颜色
+                    c)  描边矩形;
+
+                2. 画圆: arc()方法(不带填充和描边的图形绘制方法)
+                        arc(x1,y1,半径r,开始画的位置,结束角度位置,true/false[true为逆时针 false为顺时针])
+
+            注意: 1.关于画布的宽高样式都要写在行间;如果用其他方式学会出现失去精度的问题
+                  2getContext("2d") 获取2d环境
+    <canvas width = "500px" height = "500px" id="myCanvas"></canvas>
+</body>
+<script>
+    var myCan = document.getElementById("myCanvas");//获取画布对象
+    var can = myCan.getContext("2d"); //声明在2d环境下;
+        /*can.fillRect(50,50,200,100);*/  //画一个无需填充描边的矩形;
+        /*can.beginPath();
+        can.moveTo(50,50);
+        can.lineTo(150,50);
+        can.lineTo(150,150);
+        can.lineTo(50,150);
+        can.lineTo(50,50);
+        can.fillStyle = "yellow";
+        can.fill();
+        can.strokeStyle = "red";
+        can.stroke();
+        can.closePath();*/
+
+        /*绘制一个矩形*/
+        can.beginPath();
+        can.rect(50,50,300,100);
+        can.fillStyle = "yellow";
+        can.fill();
+        can.closePath();
+
+        /*绘制一个自动填充的矩形*/
+        can.beginPath();
+        can.fillStyle = "red";
+        can.fillRect(200,200,300,100);
+        /*can.fillStyle = "yellow";
+        can.fill();*/
+        can.closePath();
+
+        /*描边矩形*/
+        can.beginPath();
+        can.strokeRect(300,400,300,100);
+        can.closePath();
+
+</script>
+</html>

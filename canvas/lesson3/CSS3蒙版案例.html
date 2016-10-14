@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CSS3蒙版---</title>
+	<style>
+		*{
+			margin: 0px;
+			padding: 0px;
+		}
+		.box{
+			width: 500px;
+			height: 500px;
+			background: url("imgs/bac.jpg") no-repeat;
+			background-size: 100% 100%;
+			-webkit-mask-image: url("imgs/图片1.png"); 
+			-webkit-mask-repeat: no-repeat; 
+			-webkit-mask-position:100px 100px;
+
+		}
+		/*蒙版使用：
+			选中要用蒙版效果的元素：
+			选中蒙版的形状： -webkit-mask-image ： url()由URL的图片形状确定；
+
+           
+
+
+		*/
+		/*
+		  作业：
+			写一个漂亮的： 线性渐变和径向例子
+			写一个蒙版效果：
+			写文字渐变；
+
+		*/
+	</style>
+</head>
+<body>
+	<div class="box">
+		
+	</div>
+</body>
+</html>

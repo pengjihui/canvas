@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="box">
+        <canvas width = "500px" height = "500px" id="myCanvas"></canvas>
+    </div>
+</body>
+<script>
+    var myCan = document.getElementById("myCanvas");
+    var can = myCan.getContext("2d");
+
+        can.beginPath();
+        can.arc(250,250,50,0,Math.PI*2,true);
+        can.fillStyle = "red";
+        can.fill();
+        can.closePath();
+</script>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>背景相关的学习</title>
+	<style>
+		*{
+			margin: 0px;
+			padding: 0px;
+		}
+		.cute1{
+			width: 150px;
+			height: 150px;
+			/*background:yellow;*/
+			color: red;
+			/*opacity: 0.2;*/ /*整个快透明*/
+			background: rgba(0,0,0,0.5);
+		}
+		.cute2{
+			width: 400px;
+			height: 400px;
+			border: 20px dashed black;
+			padding: 20px;
+			background: url("imgs/bac.jpg") no-repeat;
+			/*background-size:100% 100%;*/
+			/*background-clip: content-box;*/
+		}
+		.cute3{
+			width: 400px;
+			height: 400px;
+			border: 20px dashed black;
+			padding: 20px;
+			background: url("imgs/bac.jpg") no-repeat;
+			/*background-size:100% 100%;*/
+			background-origin: content-box;
+		}
+		.cute4{
+			width: 500px;
+			height: 500px;
+			border: 20px dashed black;
+			padding: 20px;
+			background: url("imgs/log1.png") no-repeat;
+			background-size: contain;
+			
+		}
+	</style>
+</head>
+<body>
+	<!-- 背景相关的一些学习：背景渐变
+		 canvas相关知识
+		 video练习
+    
+	 -->
+    <!-- 背景相关知识的学习：
+		  1. 透明背景
+			 background:rgba(000,000,000,0.5)
+			 FF 15 + 15*16 = 255？  #ffffff
+			 这种方法： 使用： 前三个参数是关于red,green,blue三元色的设置（0-255）
+			                   第四个透明度（0-1）
+		  2. 背景切割
+		     background-clip: 作用（可以理解为背景铺的区域/面积）
+		      border-box(边框区域都会有背景图)（默认值）| padding-box(内边距里面有)  |content-box(只在内容区域有)
+
+          3. 背景原点：
+             background-origin: 规定（背景图片的其实点位置）
+                                border-box: 从边框开始铺背景图片
+                                padding-box: 从内边框区域（默认值）
+                                content-box: 从内容区域（起点位置）
+
+          4. 背景尺寸的设置（！）：background-size: 
+              a) num (px) 可以接受具体的数字（px）给定具体大小
+                1）num[a] 给一个数值 宽度按照给数字，高度自适应（按照图片比例自适应）
+                2）num[a,b] 给俩个数值 a水平大大小 b，垂直大小
+              b) 100% 100% 按照水平和垂直俩个方向设置背景图片的大小
+
+              c) auto: 按照图片的真实大小铺 如果容器小于图片，会显示不完整，
+                       大于图片，出现留白
+              d) cover: 等比例缩放一直到最小值到达铺满，图片停止缩放；
+                       使用的情况： 在容器比例跟图片差不多的情况下使用；
+
+              e) contain : 等比例缩放，一直到最大值达到铺满（这个时候不再放大，可能会出现留白）
+                      使用情况和cover类似
+     -->
+	<div class="box">
+		<div class="cute1">
+			这是透明背景的例子
+		</div>
+		<div class="cute2">
+		    这是背景切割的例子
+		</div>
+		<div class="cute3">
+			这是背景原点的设置的例子
+		</div>
+		<div class="cute4">
+			背景尺寸的实验
+		</div>
+	</div>
+</body>
+</html>

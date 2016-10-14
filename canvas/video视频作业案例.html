@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>video视频作业案例</title>
+	<style>
+		*{
+			margin: 0px;
+			padding: 0px;
+		}
+		.ctrLists{
+			overflow: hidden;
+		}
+		.ctrLists li{
+			list-style: none;
+			float: left;
+			background: #ccffff;
+			border: 1px solid #ccc;
+		/*	height: 50px;
+			line-height: 50px;*/
+			padding: 10px;
+		}
+		.ctrLists li input{
+			padding: 0px;
+		}
+		.btnCurtime{
+			width: 200px;
+		}
+		.shows{
+			position: relative;
+		}
+		.controlls{
+			position: absolute;
+			left: 10px;
+			bottom: 0px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<h1>视频案例</h1>
+		<div class="shows" id="shows">
+			<video src="../video/c.mp4" width="500" height="500" id="myVideo"></video>
+			<div class="controlls">
+				<ul class="ctrLists">
+					<li>
+						<input id="plyBtn" type="button" value="播放/暂停" />
+					</li>
+					<li>
+						<input id="fullBtn" type="button" value="全屏/退出全屏" />
+					</li>
+					<li>
+						<input class="btnCurtime" type="range" value="" />
+					</li>
+					<li>
+						<input type="range" value="全屏/退出全屏" />
+					</li>
+					<li>
+						<input type="button" value="静音/取消静音" />
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	var vdo = document.getElementById("myVideo");
+	var plyBtn = document.getElementById("plyBtn");  //播放按钮
+	var fullBtn = document.getElementById("fullBtn");  //全屏按钮
+	var shows = document.getElementById("shows");  //全屏按钮
+	var keyPly = true;
+	var keyFull = true;
+	var wid = document.documentElement.clientWidth;
+	var hei = document.documentElement.clientHeight;
+	console.log(wid,hei);
+	// 播放暂停的功能；
+    plyBtn.onclick = function(){
+    	if(keyPly){
+    		vdo.play();
+    		keyPly = false;
+    	}else{
+    		vdo.pause();
+    		keyPly = true;
+    	}
+    }
+    
+    // 全屏的实现：
+    fullBtn.onclick = function(){
+    	if(keyFull){
+    		 // 一。 疑难杂症一：关于自定义控制条和自带控制条的问题：
+    		// 出于俩个原因：我们请求全屏的对象不是视频本身，而是包裹视频的容器：
+    		// 1。 遮盖掉原本自带控制条
+    		// 2。 显示出自定义的控制条
+    		shows.webkitRequestFullScreen();  
+
+    		vdo.width = wid; 
+    		vdo.height = hei;
+    		keyFull = false;
+    	}else{
+    		document.webkitCancelFullScreen();
+    		vdo.width = 500;
+    		vdo.height = 500;
+    		keyFull = true;
+    	}
+    }
+</script>
+</html>

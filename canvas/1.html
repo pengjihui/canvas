@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{ margin: 0; padding: 0;}
+        html,body{ width: 100%; height: 100%;}
+        div{ width: 600px; height: 600px; margin: 50px auto 0;}
+    </style>
+</head>
+<body>
+<div>
+    <canvas id="myCanvas" width="600" height="600"></canvas>
+</div>
+<!--<img src="lesson3/imgs/img_lamp.jpg" id="imgs" />-->
+<!--<script>
+    var arr=[1,2,3];
+    var str="123";
+//    alert(arr instanceof Array);
+//    alert(str instanceof String);
+//    alert(typeof str);
+    function isArray(obj) {
+        if(typeof Array.isArray === "undefined"){
+            Array.isArray = function (obj) {
+                return Object.prototype.toString.call(obj)==="[object Array]";
+            }
+        }
+        return Array.isArray(obj);
+    }
+    console.log(arr);
+    alert(isArray(arr));
+    alert(isArray(str));
+</script>-->
+<!--<script>
+    var canvas=document.getElementById("myCanvas");
+    var context=canvas.getContext("2d");
+//    var img=document.getElementById("imgs");
+//    var image=context.createPattern(img,"repeat");
+//    context.fillStyle=image;
+//    context.fillRect(0,0,600,600);
+    var img=new Image();
+    img.src="lesson3/imgs/img_lamp.jpg";
+    img.onload=function () {
+        context.beginPath();
+        context.drawImage(img,0,0,32,32,10,10,40,40);
+        context.closePath();
+    }
+</script>-->
+<script>
+    var canvas=document.getElementById("myCanvas");
+    var context=canvas.getContext("2d");
+    context.beginPath();
+    context.moveTo(60,60);
+    context.quadraticCurveTo(90,160,150,-60);
+    context.stroke();
+    context.closePath();
+//    context.beginPath();
+//    context.moveTo(60,60);
+//    context.bezierCurveTo(120,140,200,-100,200,60);
+//    context.stroke();
+//    context.closePath();
+</script>
+</body>
+</html>

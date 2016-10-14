@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{padding: 0; margin: 0;}
+        body,html{height: 100%}
+        body{overflow: hidden}
+        #box-warp{;position: relative; width: 604px; height: 100%; margin: 0 auto;}
+        #warp{width: 600px; height: 200%; background: #c3c8c9; border: 1px solid #ccc; margin: 0 auto; border-right: 2px dashed red;border-left:2px dashed red; position: absolute;left: 0; top: 0;}
+        #warp .left{width: 149px; height: 100%;border-right: 1px dashed #1c1c1c;float: left;background:#c3c8c9;}
+         .img{height: 160px; width: 149px;}
+         #img{position: absolute;left:2px;bottom: 0; }
+        .bu{height: 10px;width: 10px; border-radius: 5px; position: absolute;background: red;}
+    </style>
+</head>
+<body>
+<div id="box-warp">
+    <div id="warp">
+        <div class="left"></div>
+        <div class="left"></div>
+        <div class="left"></div>
+        <div class="left" style="border: none"></div>
+        <div class="left"></div>
+        <div class="left"></div>
+        <div class="left"></div>
+        <div class="left" style="border: none"></div>
+
+    </div>
+    <img id="img" class="img" src="myplane.gif">
+</div>
+</body>
+<script src="move.js"></script>
+<script>
+    //console.log(document.documentElement.clientHeight)
+    var oImg =document.getElementById("img");
+    var oBoxWarp = document.getElementById("box-warp");
+    var oWarp = document.getElementById("warp");
+    window.onkeydown = function (event) {
+        event = event||window.event;
+        //console.log(event.keyCode);
+        if(event.keyCode ==39 ){
+            //console.log(oImg.offsetLeft)
+            //var iL = parseInt(getStyle(oImg,"left"));
+            if(oImg.offsetLeft>=452){
+                oImg.style.left = 452+"px";
+            }else {
+                oImg.style.left = oImg.offsetLeft+150+"px";
+            }
+        }
+        if(event.keyCode == 37){
+            if(oImg.offsetLeft<=2){
+                oImg.style.left = 2+"px";
+            }else {
+                oImg.style.left = oImg.offsetLeft-150+"px";
+            }
+        }
+
+        if(event.keyCode == 40){
+            var iT = parseInt(getStyle(oImg,"bottom"));
+            if(parseInt(oImg.style.bottom)<=0){
+                oImg.style.bottom = 0;
+            }else {
+                oImg.style.bottom =iT-10+"px";
+            }
+        }
+        if(event.keyCode == 38){
+            var iT = parseInt(getStyle(oImg,"bottom"));
+            if(oImg.offsetTop<=0){
+                oImg.style.bottom = 615+"px";
+            }else{
+                oImg.style.bottom = iT+10+"px";
+            }
+        }
+    };
+    var speed = 20;
+    var eW = document.documentElement.clientHeight;
+    setInterval(function () {
+        var iT = oWarp.offsetTop;
+        if(iT>=0){
+            oWarp.style.top = -eW+"px";
+        }else{
+        oWarp.style.top = iT+speed+"px";
+        }
+    },30);
+    
+
+
+
+    function Play(src) {
+        this.src = src;
+    }
+    Play.prototype.init= function () {
+        this.element = document.createElement("div");
+        var arr = [2,152,302,452];
+        this.element.style.position = "absolute";
+        i = Math.floor(Math.random()*4);
+        this.element.style.left = arr[i]+"px" ;
+        this.element.style.top = -160+"px";
+        //this.element.innerHTML = '<img class="img" src="src"/>';
+        this.element.innerHTML = "<img class='img' src="+this.src+"/>";
+        oBoxWarp.appendChild(this.element);
+        this.stayMove();
+        //this.bubbles();
+
+    };
+
+
+    Play.prototype.stayMove = function () {
+        var speed =parseInt(Math.random()*10);
+        var that = this;
+        console.log(oImg.offsetLeft);
+        console.log(that.element.offsetLeft);
+        setInterval(function () {
+            var iT = parseInt(getStyle(that.element,"top"));
+            that.element.style.top = iT+speed+"px";
+            //console.log(parseInt(getStyle(that.element,"top")));
+            if(iT>=document.documentElement.clientHeight){
+                oBoxWarp.removeChild(that.element);
+            }
+            var ducHeight = document.documentElement.clientHeight;
+            var oImgTop = oImg.offsetTop;
+            var PlayTop = that.element.offsetTop+that.element.offsetHeight;
+            var PlayLeft = parseInt(getStyle(that.element,"left"));
+            //console.log(that.element.offsetTop);
+
+
+            if(((oImgTop+oImg.offsetHeight)>that.element.offsetTop)&&(oImgTop<=PlayTop)&&(oImg.offsetLeft==(PlayLeft))){
+                oBoxWarp.removeChild(that.element);
+
+            }
+
+        },30);
+    };
+
+
+
+    var arr = ["enemy1_fly_1.png","center.png","big.png"];
+
+        setInterval(function () {
+            var iW = Math.floor(Math.random()*3);
+            var src = arr[iW];
+            //console.log(src);
+
+//    var oPlay = new Play("src");
+            var oPlay = new Play(src);
+            oPlay.init();
+        },1000);
+
+    /*Play.prototype.bubbles = function () {
+        var that = this;
+        setInterval(function () {
+            var bottom =parseInt(getStyle(oImg,"bottom"))+oImg.offsetHeight-20;
+            var bu = document.createElement("div");
+            bu.className = "bu";
+            bu.style.left = oImg.offsetLeft+(oImg.offsetWidth)/2-4+"px";
+
+            oBoxWarp.appendChild(bu);
+            var speed = 20;
+            setInterval(function () {
+                bottom +=speed;
+                bu.style.bottom = bottom+"px";
+                var buTop = bu.offsetTop;
+                //var PlayTop = that.element.offsetTop+that.element.offsetHeight;
+                var PlayLeft = parseInt(getStyle(that.element,"left"));
+                //console.log(that.element.offsetTop);
+
+
+                if(((buTop+oImg.offsetHeight)<that.element.offsetTop)&&(bu.offsetLeft==(PlayLeft))){
+                    oBoxWarp.removeChild(that.element);
+                }
+
+
+            },100);
+
+        },200);
+    }*/
+
+
+
+</script>
+</html>

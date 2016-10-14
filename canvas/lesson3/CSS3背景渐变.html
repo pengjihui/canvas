@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CSS3----之背景渐变</title>
+	<style>
+		*{
+			margin: 0px;
+			padding: 0px;
+		}
+		.box{
+			width: 150px;
+			height: 400px;
+			background: -webkit-linear-gradient(top, red 0%,green 50%,yellow 70%, pink 100%);
+		}
+		.box2{
+			width: 500px;
+			height: 300px;
+			background: -webkit-radial-gradient(50% 50%,circle,yellow 0%,green 50%,pink 70%, black 100%);
+		}
+		.cute1{
+			width: 200px;
+			height: 200px;
+			border-radius: 100px;
+			border: 1px solid #ccc;
+			background: -webkit-radial-gradient(30% 30%, white 0%, black 100%
+				);
+		}
+	</style>
+</head>
+<body>
+    <!-- 
+		css3背景渐变：a) background: (值) （特殊值）
+		              b) 做前缀兼容
+		    使用操作：
+		        1. 背景渐变的分类：
+		           a) 线性渐变 background: -webkit-linear-gradient()
+		           b) 径向渐变 background: -webkit-radial-gradient()
+
+
+                 
+                1.1 线性渐变：background: -webkit-linear-gradient([](方位确定参数), 颜色值参数[color1] 百分比（开始的位置0%）, 颜色值参数2[color2] 百分比[50%]，。。。N组颜色+百分 )
+
+                   a)第一组参数（方位确定）：
+                     值的情况： 1. 方位词 top,left,right,bottom 
+                                2. 角度（deg?）0(从左往右) 
+                                   角度确定（与水平方向的夹角（逆时针方向））
+                                3. top left 通过俩个方位词来确定从左上右上，，
+                                 等某一顶点线
+
+                    注意： 方位确定不接受带px具体的数值！不能接受百分比！
+                   b) 关于颜色的设置（color 位置（百分比），。。。）理论上可以任意有限多组
+                     注意： 1）百分比：意义：百分比的位置是颜色最纯正位置；
+                            2）颜色可以接受十六进制的颜色
+
+                1.2 径向渐变：background: -webkit-radial-gradient(确定圆心的参数，[形状]?，颜色以及位置[百分比],....)；
+                    eg
+                   关于值：
+                      a) 确定圆心的参数：1. 方位词确定圆心（center center） 
+                                            center top 
+                                         2. 百分比确定圆心 50% 50% 
+                                         3. pX? num 可以接受一组具体的像素值
+                      b) 形状： 1). 正圆 circle
+                                2). 椭圆 ellipse
+                      c) 颜色跟位置：。。。跟线性一样；
+
+     -->           
+	<div class="box">
+		
+	</div>
+	<div class="box2">
+		
+	</div>
+	<div class="cute1">
+		
+	</div>
+</body>
+<script>
+	/*alert("ac">"ab");
+	// 字符串的比较按照位来比较: 先比较每一位（ASCII编码）*/
+
+   
+	function test(){
+		var a = 2;
+		var b = 2;
+		function sub(){
+          alert(a*b)
+		}
+		return sub;
+	}
+	var aa = test();  //aa就是一个典型的闭包
+		aa();
+</script>
+</html>
